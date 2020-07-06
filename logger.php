@@ -2,7 +2,7 @@
 
 $filename = 'log.txt';
 
-$date  =  date("Y-m-d H:i:s");
+$date = date("Y-m-d H:i:s");
 $content = "Date: " . $date . PHP_EOL;
 
 // Handling headers
@@ -31,26 +31,30 @@ if (!empty($_POST)) {
 
 $content .= "--------------------------------" . PHP_EOL;
 
-// Save to  file 
+// Save to  file
 file_put_contents($filename, $content, FILE_APPEND | LOCK_EX);
 
 // Print
-echo str_replace(array("\r\n", "\r", "\n"), '<br>', $content);
+echo str_replace(["\r\n", "\r", "\n"], '<br>', $content);
 
 /**
- * Parse headers from $_SERVER
- * @return string 
+ * Parse headers
+ * @return string
  */
 function get_request_headers_as_string()
 {
   $headers = "";
   foreach ($_SERVER as $key => $value) {
     if (strpos($key, 'HTTP_') === 0) {
-      $headers .= str_replace(' ', '-', ucwords(str_replace(
-        '_',
-        ' ',
-        strtolower(substr($key, 5))
-      ))) . ":" . $value . PHP_EOL;
+      $headers .=
+        str_replace(
+          ' ',
+          '-',
+          ucwords(str_replace('_', ' ', strtolower(substr($key, 5))))
+        ) .
+        ":" .
+        $value .
+        PHP_EOL;
     }
   }
   return $headers;

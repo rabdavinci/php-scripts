@@ -3,3 +3,12 @@ log.txt
 
 # vscode config
 .vscode
+
+# PHPStorm config
+.idea
+
+# Node modules
+node_modules/
+
+# Composer vendor folder
+vendor/
